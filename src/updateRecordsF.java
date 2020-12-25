@@ -44,6 +44,7 @@ public class updateRecordsF extends javax.swing.JFrame {
         jTextField7 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,12 +89,12 @@ public class updateRecordsF extends javax.swing.JFrame {
         jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jButton2.setText("Update");
         jPanel1.add(jButton2);
-        jButton2.setBounds(70, 420, 103, 29);
+        jButton2.setBounds(80, 420, 103, 29);
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel5.setText("Age");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(110, 310, 38, 21);
+        jLabel5.setBounds(120, 220, 38, 21);
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel6.setText("Gender");
@@ -103,7 +104,7 @@ public class updateRecordsF extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel8.setText("Address");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(100, 220, 81, 21);
+        jLabel8.setBounds(100, 310, 81, 21);
 
         jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close.png"))); // NOI18N
@@ -114,7 +115,7 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(450, 420, 119, 29);
+        jButton1.setBounds(460, 420, 119, 29);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Famale" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -129,10 +130,10 @@ public class updateRecordsF extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Name", "Age", "Gender", "Contact"
+                "Name", "Age", "Gender", "Contact", "Address"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -140,23 +141,32 @@ public class updateRecordsF extends javax.swing.JFrame {
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(30, 90, 630, 50);
 
+        jButton4.setText("Delete");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton4);
+        jButton4.setBounds(260, 440, 110, 30);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add new patient background.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 670, 490);
+        jLabel1.setBounds(0, 0, 680, 490);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 681, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(668, 489));
+        setSize(new java.awt.Dimension(681, 489));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -173,6 +183,10 @@ public class updateRecordsF extends javax.swing.JFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,6 +227,7 @@ public class updateRecordsF extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
