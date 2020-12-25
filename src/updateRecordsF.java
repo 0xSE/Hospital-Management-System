@@ -84,7 +84,7 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(400, 50, 127, 30);
+        jButton3.setBounds(390, 40, 127, 30);
 
         jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jButton2.setText("Update");

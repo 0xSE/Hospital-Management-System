@@ -8,6 +8,10 @@
  *
  * @author xsame
  */
+import javax.swing.*;
+import java.sql.DriverManager;
+import java.sql.*;
+import javax.swing.table.DefaultTableModel;
 public class addPatientF extends javax.swing.JFrame {
 
     /**
@@ -108,6 +112,11 @@ public class addPatientF extends javax.swing.JFrame {
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save-icon--1.png"))); // NOI18N
         jButton3.setText("Save");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton3);
         jButton3.setBounds(120, 390, 89, 29);
 
@@ -146,6 +155,37 @@ public class addPatientF extends javax.swing.JFrame {
             this.setVisible(false);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+         try { 
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "samehpop");
+            PreparedStatement stmt = con.prepareStatement("insert into patient( Name , age , gender, address ,contact ) values (?,?,?,?,?) ");
+            String name = jTextField2.getText();
+            //String age = jTextField3.getText();
+            int age = Integer.parseInt(jTextField3.getText());
+            String gender= jComboBox1.getSelectedItem().toString();
+            String address = jTextField4.getText();
+            String contact = jTextField5.getText();
+            stmt.setString(1,name);
+            stmt.setInt(2,age);
+            stmt.setString(3,gender);
+            stmt.setString(4,address);
+            stmt.setString(5,contact);
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(this, "insertion successful");
+            jTextField2.setText("  ");
+            jTextField3.setText("  ");
+            jTextField4.setText("  ");
+            jTextField5.setText("  ");
+           // JShowBtnActionperformed(evt);
+            
+        }
+        catch  (Exception e){
+            JOptionPane.showMessageDialog(this, "Age is wrong");
+            System.out.println("e.getMessege");
+        }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
