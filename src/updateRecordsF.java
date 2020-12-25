@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author xsame
- */
+import java.awt.event.ActionEvent;
+import java.sql.*;
+import javax.swing.JOptionPane;
+
 public class updateRecordsF extends javax.swing.JFrame {
 
     /**
@@ -27,133 +22,127 @@ public class updateRecordsF extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        id = new javax.swing.JTextField();
+        address = new javax.swing.JTextField();
+        age = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        contact_no = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        search = new javax.swing.JButton();
+        update = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jTextField7 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        close = new javax.swing.JButton();
+        gender = new javax.swing.JComboBox<>();
+        name = new javax.swing.JTextField();
+        delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setLayout(null);
-        jPanel1.add(jTextField3);
-        jTextField3.setBounds(230, 50, 120, 22);
-        jPanel1.add(jTextField4);
-        jTextField4.setBounds(260, 310, 180, 22);
-        jPanel1.add(jTextField5);
-        jTextField5.setBounds(260, 220, 180, 22);
+        jPanel1.add(id);
+        id.setBounds(240, 40, 150, 30);
+        jPanel1.add(address);
+        address.setBounds(240, 240, 240, 30);
+        jPanel1.add(age);
+        age.setBounds(240, 180, 240, 30);
 
         jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel2.setText("Patient ID");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(80, 50, 96, 21);
+        jLabel2.setBounds(90, 40, 96, 21);
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel3.setText("Name");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(110, 170, 60, 21);
-        jPanel1.add(jTextField6);
-        jTextField6.setBounds(260, 360, 180, 22);
+        jLabel3.setBounds(100, 120, 60, 21);
+        jPanel1.add(contact_no);
+        contact_no.setBounds(240, 300, 240, 30);
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel4.setText("Contact No");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(80, 360, 109, 21);
+        jLabel4.setBounds(100, 300, 109, 21);
 
-        jButton3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search.png"))); // NOI18N
-        jButton3.setText("Search");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        search.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search.png"))); // NOI18N
+        search.setText("Search");
+        search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                searchActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(390, 40, 127, 30);
+        jPanel1.add(search);
+        search.setBounds(460, 40, 127, 30);
 
-        jButton2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-        jButton2.setText("Update");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(80, 420, 103, 29);
+        update.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        update.setText("Update");
+        update.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateActionPerformed(evt);
+            }
+        });
+        jPanel1.add(update);
+        update.setBounds(40, 420, 120, 30);
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel5.setText("Age");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(120, 220, 38, 21);
+        jLabel5.setBounds(110, 180, 38, 21);
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel6.setText("Gender");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(100, 260, 100, 21);
+        jLabel6.setBounds(100, 360, 100, 21);
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel8.setText("Address");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(100, 310, 81, 21);
+        jLabel8.setBounds(100, 240, 81, 21);
 
-        jButton1.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close.png"))); // NOI18N
-        jButton1.setText("Close");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        close.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
+        close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close.png"))); // NOI18N
+        close.setText("Close");
+        close.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                closeActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(460, 420, 119, 29);
+        jPanel1.add(close);
+        close.setBounds(540, 420, 119, 29);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Famale" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Famale" }));
+        gender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                genderActionPerformed(evt);
             }
         });
-        jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(260, 260, 180, 22);
-        jPanel1.add(jTextField7);
-        jTextField7.setBounds(260, 170, 180, 22);
+        jPanel1.add(gender);
+        gender.setBounds(260, 360, 180, 30);
+        jPanel1.add(name);
+        name.setBounds(240, 120, 240, 30);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null}
-            },
-            new String [] {
-                "Name", "Age", "Gender", "Contact", "Address"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 90, 630, 50);
-
-        jButton4.setText("Delete");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        delete.setText("Delete");
+        delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                deleteActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4);
-        jButton4.setBounds(270, 420, 110, 30);
+        jPanel1.add(delete);
+        delete.setBounds(290, 440, 110, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add new patient background.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 680, 490);
+        jLabel1.setBounds(0, 10, 680, 490);
+
+        jButton1.setText("jButton1");
+        jPanel1.add(jButton1);
+        jButton1.setBounds(560, 190, 79, 25);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -163,30 +152,117 @@ public class updateRecordsF extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(681, 489));
+        setSize(new java.awt.Dimension(681, 492));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    ///***********************************************************************************///////////////////////////////
+    //*********************************************** Search function *****************************//////////////
+    //*****************************************************************************************//////////////////////////
+    
+    private void searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchActionPerformed
+        Function f=new Function();
+        ResultSet rs =null;
+        String n="name";
+        String ag="age";
+        String gen="gender";
+        String add="address";
+        String cont="contact";
+        rs=f.find(id.getText());
+        try{
+        if(rs.next()){
+            name.setText(rs.getString("name"));
+            age.setText(rs.getString("age")); 
+            address.setText(rs.getString("address"));
+            contact_no.setText(rs.getString("contact"));       
+            String GENDER =rs.getString("gender");
+            if("Female".equals(GENDER))
+            {
+                gender.setSelectedIndex(1);
+            }
+            else
+            {
+                 gender.setSelectedIndex(0);
+            }   
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"NO DATA FOR THIS ID");
+        } 
+        }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,ex.getMessage());
+        }
+    }//GEN-LAST:event_searchActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void genderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_genderActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void closeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeActionPerformed
         this.setVisible(false);
-
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_closeActionPerformed
+///******************************************************** Delete Function***************************/////////////////////////
+///******************************************************************************************///////////////////////////////
+    private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
+        try{
+     Connection con= DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","samehpop");
+     PreparedStatement stmt=con.prepareStatement("delete from patient where id=?");
+     String text = JOptionPane.showInputDialog(this,"To delete this records click 0 :");
+     if(text.equals("0"))
+     {
+     String ID=id.getText();
+     stmt.setString(1, ID);
+     stmt.executeUpdate();
+     JOptionPane.showMessageDialog(this,"Delete Duccess");
+     name.setText(" ");
+     age.setText(" ");
+     address.setText(" ");
+     contact_no.setText(" ");
+     id.setText(" ");
+     }else {
+     
+     JOptionPane.showMessageDialog(this,"Thank You");
+     
+     }
+     
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,ex.getMessage());
+    }  
+    }//GEN-LAST:event_deleteActionPerformed
+//*****************************************************************************************************/////////////
+ //*****************************************  Update Function *******************************/////////////////////////// 
+ //******************************************************************************************************/////////
+    private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
+        
+        try{
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","samehpop");
+            PreparedStatement stmt=con.prepareStatement("update patient set name=? ,age=? , address=? ,contact=? where id=? ");
+            String ID=id.getText();
+            String Name=name.getText();
+            String Address=address.getText();
+            String Age=age.getText();
+            String Contact=contact_no.getText();
+            stmt.setString(1, Name);
+            stmt.setString(2, Age);
+            stmt.setString(3,Address);
+            stmt.setString(4, Contact);
+            stmt.setString(5, ID);
+            stmt.executeUpdate();
+            JOptionPane.showMessageDialog(this,"Update Success");
+            //jShowBtnActionPerformed(evt);
+                id.setText(" ");
+                name.setText(" ");
+                age.setText(" ");
+                address.setText(" ");
+                contact_no.setText(" ");
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,ex.getMessage());
+    }
+        
+    }//GEN-LAST:event_updateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,12 +299,41 @@ public class updateRecordsF extends javax.swing.JFrame {
         });
     }
 
+    private void jShowBtnActionPerformed(ActionEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+      
+    //**************************************************************************************************//////////////
+    //**************************  This function is used in Search function  ****************************////////////////
+    //***********************************************************************************************************//
+   
+ public class Function {
+    Connection con=null;
+    ResultSet rs=null;
+    PreparedStatement ps=null;
+    public ResultSet find (String s){
+    try{
+    con =DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","samehpop");
+    ps=con.prepareStatement("select *from patient where id= ?");
+    ps.setString(1, s);
+    rs=ps.executeQuery();
+    
+    }catch(Exception ex){
+        JOptionPane.showMessageDialog(null,ex.getMessage());
+    }
+    return rs;
+    }
+    
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField address;
+    private javax.swing.JTextField age;
+    private javax.swing.JButton close;
+    private javax.swing.JTextField contact_no;
+    private javax.swing.JButton delete;
+    private javax.swing.JComboBox<String> gender;
+    private javax.swing.JTextField id;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -237,12 +342,8 @@ public class updateRecordsF extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField name;
+    private javax.swing.JButton search;
+    private javax.swing.JButton update;
     // End of variables declaration//GEN-END:variables
 }
