@@ -148,7 +148,7 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(260, 440, 110, 30);
+        jButton4.setBounds(270, 420, 110, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add new patient background.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
