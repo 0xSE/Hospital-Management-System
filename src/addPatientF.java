@@ -32,7 +32,6 @@ public class addPatientF extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -55,35 +54,32 @@ public class addPatientF extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Gender");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(130, 180, 66, 22);
-
-        jLabel6.setText(" id will appear here when press Save Button");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(270, 330, 260, 16);
+        jLabel5.setBounds(130, 180, 66, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Address");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(130, 230, 71, 22);
+        jLabel7.setBounds(130, 232, 71, 30);
         jPanel1.add(jTextField2);
-        jTextField2.setBounds(270, 80, 150, 22);
+        jTextField2.setBounds(270, 80, 150, 30);
         jPanel1.add(jTextField3);
-        jTextField3.setBounds(270, 130, 150, 22);
+        jTextField3.setBounds(270, 130, 150, 30);
         jPanel1.add(jTextField4);
-        jTextField4.setBounds(270, 230, 150, 22);
+        jTextField4.setBounds(270, 230, 150, 30);
         jPanel1.add(jTextField5);
-        jTextField5.setBounds(270, 280, 150, 22);
+        jTextField5.setBounds(270, 280, 150, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Name");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(140, 80, 53, 22);
+        jLabel3.setBounds(140, 80, 53, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Contact No");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(120, 280, 100, 22);
+        jLabel4.setBounds(120, 282, 100, 30);
 
+        jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Famale" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -91,12 +87,12 @@ public class addPatientF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jComboBox1);
-        jComboBox1.setBounds(270, 180, 150, 22);
+        jComboBox1.setBounds(270, 180, 150, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Age");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(140, 130, 34, 22);
+        jLabel8.setBounds(140, 130, 34, 30);
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close.png"))); // NOI18N
@@ -107,7 +103,7 @@ public class addPatientF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(410, 390, 93, 29);
+        jButton2.setBounds(450, 380, 93, 29);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save-icon--1.png"))); // NOI18N
@@ -118,7 +114,7 @@ public class addPatientF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(120, 390, 89, 29);
+        jButton3.setBounds(140, 380, 89, 29);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add new patient background.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
@@ -173,15 +169,15 @@ public class addPatientF extends javax.swing.JFrame {
             stmt.setString(5,contact);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(this, "insertion successful");
-            jTextField2.setText("  ");
-            jTextField3.setText("  ");
-            jTextField4.setText("  ");
-            jTextField5.setText("  ");
+            jTextField2.setText("");
+            jTextField3.setText("");
+            jTextField4.setText("");
+            jTextField5.setText("");
            // JShowBtnActionperformed(evt);
             
         }
         catch  (Exception e){
-            JOptionPane.showMessageDialog(this, "Age is wrong");
+            JOptionPane.showMessageDialog(this, "insertion Faild");
             System.out.println("e.getMessege");
         }
         // TODO add your handling code here:
@@ -231,7 +227,6 @@ public class addPatientF extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
