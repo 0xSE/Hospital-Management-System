@@ -46,7 +46,7 @@ public class updateRecordsF extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
         jPanel1.add(id);
-        id.setBounds(240, 40, 150, 30);
+        id.setBounds(240, 40, 100, 30);
         jPanel1.add(address);
         address.setBounds(240, 240, 240, 30);
         jPanel1.add(age);
@@ -55,12 +55,12 @@ public class updateRecordsF extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel2.setText("Patient ID");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(90, 40, 96, 21);
+        jLabel2.setBounds(90, 40, 96, 30);
 
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel3.setText("Name");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(100, 120, 60, 21);
+        jLabel3.setBounds(110, 120, 60, 21);
         jPanel1.add(contact_no);
         contact_no.setBounds(240, 300, 240, 30);
 
@@ -78,7 +78,7 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(search);
-        search.setBounds(460, 40, 127, 30);
+        search.setBounds(350, 40, 127, 30);
 
         update.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         update.setText("Update");
@@ -88,7 +88,7 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(update);
-        update.setBounds(40, 420, 120, 30);
+        update.setBounds(50, 420, 140, 40);
 
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel5.setText("Age");
@@ -114,8 +114,9 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(close);
-        close.setBounds(540, 420, 119, 29);
+        close.setBounds(270, 420, 140, 40);
 
+        gender.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Famale" }));
         gender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -123,10 +124,11 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(gender);
-        gender.setBounds(260, 360, 180, 30);
+        gender.setBounds(240, 350, 90, 40);
         jPanel1.add(name);
         name.setBounds(240, 120, 240, 30);
 
+        delete.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         delete.setText("Delete");
         delete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,11 +136,11 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(delete);
-        delete.setBounds(290, 440, 110, 40);
+        delete.setBounds(500, 420, 140, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add new patient background.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 10, 680, 490);
+        jLabel1.setBounds(0, 0, 680, 490);
 
         jButton1.setText("jButton1");
         jPanel1.add(jButton1);

@@ -59,7 +59,7 @@ public class addPatientF extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Address");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(130, 232, 71, 30);
+        jLabel7.setBounds(130, 230, 71, 30);
         jPanel1.add(jTextField2);
         jTextField2.setBounds(270, 80, 150, 30);
         jPanel1.add(jTextField3);
@@ -77,7 +77,7 @@ public class addPatientF extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Contact No");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(120, 282, 100, 30);
+        jLabel4.setBounds(120, 280, 100, 30);
 
         jComboBox1.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Famale" }));
@@ -103,7 +103,7 @@ public class addPatientF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(450, 380, 93, 29);
+        jButton2.setBounds(450, 380, 93, 40);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save-icon--1.png"))); // NOI18N
@@ -114,7 +114,7 @@ public class addPatientF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(140, 380, 89, 29);
+        jButton3.setBounds(140, 380, 89, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add new patient background.jpg"))); // NOI18N
         jPanel1.add(jLabel1);

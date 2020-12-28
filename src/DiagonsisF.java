@@ -77,7 +77,7 @@ public class DiagonsisF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(530, 370, 118, 29);
+        jButton2.setBounds(530, 370, 118, 40);
 
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save-icon--1.png"))); // NOI18N
@@ -88,33 +88,33 @@ public class DiagonsisF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(80, 370, 113, 29);
+        jButton3.setBounds(80, 370, 113, 40);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("Symptom`s");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(70, 180, 103, 22);
+        jLabel2.setBounds(70, 180, 103, 40);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Diagnosis");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(70, 240, 87, 27);
+        jLabel3.setBounds(70, 240, 87, 40);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("Medicines");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(70, 290, 90, 22);
+        jLabel4.setBounds(70, 300, 90, 40);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel6.setText("Patient ID");
         jPanel1.add(jLabel6);
         jLabel6.setBounds(90, 30, 93, 22);
         jPanel1.add(symptomFiled);
-        symptomFiled.setBounds(210, 180, 370, 22);
+        symptomFiled.setBounds(210, 180, 370, 40);
         jPanel1.add(diagnosisField);
-        diagnosisField.setBounds(210, 240, 370, 22);
+        diagnosisField.setBounds(210, 240, 370, 40);
         jPanel1.add(medicinesField);
-        medicinesField.setBounds(210, 290, 370, 22);
+        medicinesField.setBounds(210, 300, 370, 40);
 
         idValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,10 +128,10 @@ public class DiagonsisF extends javax.swing.JFrame {
 
         showDataInTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
-                "Name", "Age", "Gender", "Contact"
+                "Name", "Age", "Gender", "Contact", "Address"
             }
         ));
         jScrollPane1.setViewportView(showDataInTable);
@@ -181,6 +181,7 @@ public class DiagonsisF extends javax.swing.JFrame {
                 break;
             }
         }
+        
         if(id.equals("")){
             idValue.setText("");
             JOptionPane.showMessageDialog(this,"ID Not Found");

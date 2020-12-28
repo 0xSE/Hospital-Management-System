@@ -8,6 +8,10 @@
  *
  * @author xsame
  */
+import java.math.BigInteger; 
+import java.security.MessageDigest; 
+import java.security.NoSuchAlgorithmException; 
+
 public class login extends javax.swing.JFrame {
 
     /**
