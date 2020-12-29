@@ -210,9 +210,9 @@ public class updateRecordsF extends javax.swing.JFrame {
 ///******************************************************************************************///////////////////////////////
     private void deleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteActionPerformed
         try{
-     Connection con= DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","samehpop");
+     Connection con= DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","root");
      PreparedStatement stmt=con.prepareStatement("delete from patient where id=?");
-     String text = JOptionPane.showInputDialog(this,"To delete this records click 0 :");
+     String text = JOptionPane.showInputDialog(this,"To Delete This Records Enter 0 :");
      if(text.equals("0"))
      {
      String ID=id.getText();
@@ -240,7 +240,7 @@ public class updateRecordsF extends javax.swing.JFrame {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         
         try{
-            Connection con= DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","samehpop");
+            Connection con= DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","root");
             PreparedStatement stmt=con.prepareStatement("update patient set name=? ,age=? , address=? ,contact=? where id=? ");
             String ID=id.getText();
             String Name=name.getText();
@@ -315,7 +315,7 @@ public class updateRecordsF extends javax.swing.JFrame {
     PreparedStatement ps=null;
     public ResultSet find (String s){
     try{
-    con =DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","samehpop");
+    con =DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","root");
     ps=con.prepareStatement("select *from patient where id= ?");
     ps.setString(1, s);
     rs=ps.executeQuery();

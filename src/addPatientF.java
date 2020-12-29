@@ -154,8 +154,9 @@ public class addPatientF extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
          try { 
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "samehpop");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
             PreparedStatement stmt = con.prepareStatement("insert into patient( Name , age , gender, address ,contact ) values (?,?,?,?,?) ");
+            
             String name = jTextField2.getText();
             //String age = jTextField3.getText();
             int age = Integer.parseInt(jTextField3.getText());
@@ -168,11 +169,25 @@ public class addPatientF extends javax.swing.JFrame {
             stmt.setString(4,address);
             stmt.setString(5,contact);
             stmt.executeUpdate();
-            JOptionPane.showMessageDialog(this, "insertion successful");
+         stmt= con.prepareStatement("select *from patient");
+        ResultSet set =  stmt.executeQuery();
+        DefaultTableModel dm= new DefaultTableModel();
+        String id="";
+        while(set.next() && true){
+                id=set.getString(1);
+            }
+        
+            JOptionPane.showMessageDialog(this, "insertion successful" +"\n" + id);
             jTextField2.setText("");
             jTextField3.setText("");
             jTextField4.setText("");
             jTextField5.setText("");
+            stmt = con.prepareStatement("insert into patient_details( symptom , diagnosis , medicines ) values (?,?,?) ");
+            stmt.setString(1," ");
+            stmt.setString(2," ");
+            stmt.setString(3," ");
+            stmt.executeUpdate();
+
            // JShowBtnActionperformed(evt);
             
         }

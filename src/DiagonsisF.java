@@ -169,7 +169,7 @@ public class DiagonsisF extends javax.swing.JFrame {
 
     private void searshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searshActionPerformed
                 try {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "samehpop");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
  
         PreparedStatement stmt= con.prepareStatement("select *from patient");
         ResultSet set =  stmt.executeQuery();
@@ -216,16 +216,14 @@ public class DiagonsisF extends javax.swing.JFrame {
             
         try {
              
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "samehpop");
-            PreparedStatement stmt = con.prepareStatement("insert into patient_details( id_connector , symptom , diagnosis, medicines  ) values (?,?,?,?) ");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
+            PreparedStatement stmt=con.prepareStatement("update patient_details set symptom=? ,diagnosis=? , medicines=? ");
             String symptom= symptomFiled.getText();
             String diagnosis = diagnosisField.getText();
             String medicines = medicinesField.getText();
-            int intID= Integer.parseInt(idValue.getText());
-            stmt.setInt(1,intID);
-            stmt.setString(2,symptom);
-            stmt.setString(3,diagnosis);
-            stmt.setString(4,medicines);
+            stmt.setString(1,symptom);
+            stmt.setString(2,diagnosis);
+            stmt.setString(3,medicines);
             stmt.executeUpdate();
             JOptionPane.showMessageDialog(this, "insertion successful");
             diagnosisField.setText("");

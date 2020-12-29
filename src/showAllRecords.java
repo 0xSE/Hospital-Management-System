@@ -109,7 +109,7 @@ public class showAllRecords extends javax.swing.JFrame {
 
     private void showALLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showALLActionPerformed
         try {
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "samehpop");
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
         PreparedStatement stmt= con.prepareStatement("select *from patient inner join patient_details where patient.id = patient_details.id_connector");
         ResultSet set =  stmt.executeQuery();
         DefaultTableModel dm= new DefaultTableModel();
@@ -139,7 +139,7 @@ public class showAllRecords extends javax.swing.JFrame {
 
     private void showDataInTableComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_showDataInTableComponentShown
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "samehpop");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
             Statement st = con.createStatement();
             ResultSet rs =  st.executeQuery("select *from patient inner join patient_details where patient.id = patient_details.id_connector");
             showDataInTable.setAutoResizeMode(showDataInTable.AUTO_RESIZE_OFF);
