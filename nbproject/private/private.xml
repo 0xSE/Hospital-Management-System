@@ -4,17 +4,14 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/updateRecordsF.java</file>
-            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/HospitalInformation.jpeg</file>
-            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/addPatientF.java</file>
-            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/Information.java</file>
-            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/home.java</file>
+            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/addDoctor.java</file>
+            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/UpdateDoctor.java</file>
+            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/loginDoctor.java</file>
             <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/DiagonsisF.java</file>
-            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/login.java</file>
-            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/login.png</file>
             <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/showAllRecords.java</file>
-            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/Close.png</file>
-            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/Delete%20Record.png</file>
-            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/home%20(2).jpg</file>
+            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/LoginPage.java</file>
+            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/HomePage.java</file>
+            <file>file:/C:/Users/xsame/OneDrive/Desktop/Hospital-Management-System%20(1)/Hospital-Management-System/src/HomeDoctor.java</file>
         </group>
     </open-files>
 </project-private>

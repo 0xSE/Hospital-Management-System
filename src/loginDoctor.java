@@ -12,13 +12,19 @@ import javax.swing.*;
 import java.math.BigInteger; 
 import java.security.MessageDigest; 
 import java.security.NoSuchAlgorithmException; 
-
-public class LoginPage extends javax.swing.JFrame {
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+public class loginDoctor extends javax.swing.JFrame {
 
     /**
-     * Creates new form home
+     * Creates new form loginDoctor
      */
-    public LoginPage() {
+    public loginDoctor() {
         initComponents();
     }
 
@@ -31,28 +37,29 @@ public class LoginPage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         userName = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         Password = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel2.setLayout(null);
+        jPanel1.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setText("Username");
-        jPanel2.add(jLabel2);
+        jPanel1.add(jLabel2);
         jLabel2.setBounds(350, 220, 70, 20);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setText("Password");
-        jPanel2.add(jLabel3);
+        jPanel1.add(jLabel3);
         jLabel3.setBounds(350, 280, 70, 20);
 
         userName.setToolTipText("");
@@ -61,7 +68,7 @@ public class LoginPage extends javax.swing.JFrame {
                 userNameActionPerformed(evt);
             }
         });
-        jPanel2.add(userName);
+        jPanel1.add(userName);
         userName.setBounds(470, 220, 110, 22);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close.png"))); // NOI18N
@@ -71,7 +78,7 @@ public class LoginPage extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1);
+        jPanel1.add(jButton1);
         jButton1.setBounds(520, 340, 110, 30);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/login.png"))); // NOI18N
@@ -81,28 +88,35 @@ public class LoginPage extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton2);
+        jPanel1.add(jButton2);
         jButton2.setBounds(340, 340, 120, 29);
-        jPanel2.add(Password);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add doctor.png"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(140, 170, 50, 60);
+        jPanel1.add(Password);
         Password.setBounds(470, 280, 110, 22);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Login Background.PNG"))); // NOI18N
         jLabel1.setToolTipText("");
-        jPanel2.add(jLabel1);
+        jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 750, 490);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 751, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 744, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 491, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        setSize(new java.awt.Dimension(751, 488));
+        setSize(new java.awt.Dimension(744, 491));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -111,86 +125,50 @@ public class LoginPage extends javax.swing.JFrame {
     }//GEN-LAST:event_userNameActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            this.setVisible(false);
-            Start Start= new Start();
-            Start.setVisible(true);
+        this.setVisible(false);
+        Start Start= new Start();
+        Start.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String name= userName.getText();
-        MD5 md = new MD5();
-        String password= md.getMd5(Password.getText());
-        if(name.equals("root") && password.equals("63a9f0ea7bb98050796b649e85481845")){
-            this.setVisible(false);
-            HomePage log= new HomePage();
-            log.setVisible(true);
+        try { 
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
+            PreparedStatement stmt  =con.prepareStatement("select *from Doctors");
+            ResultSet set =  stmt.executeQuery();
+            String id="";
+            while(set.next() && true){
+                if (set.getString(2).equals(userName.getText()) && set.getString(7).equals(Password.getText()) ){
+                    id=set.getString(1);
+                    break;
+                }
+            }
+             if(id.equals("")){
+            JOptionPane.showMessageDialog(this,"User Name or password is Wrong");
         }else{
-            JOptionPane.showMessageDialog(this,"Password or Username are wrong.");
+            this.setVisible(false);
+            HomeDoctor HomeDoctor= new HomeDoctor(id);
+            HomeDoctor.setVisible(true);
         }
+        }
+        catch  (Exception e){
+            JOptionPane.showMessageDialog(this, "Faild");
+            System.out.println("e.getMessege");
+        }
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
+        
+        
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new LoginPage().setVisible(true);
+                new loginDoctor().setVisible(true);
             }
         });
-    }
-    public class MD5 { 
-    public String getMd5(String input) 
-    { 
-        try { 
-            // Static getInstance method is called with hashing MD5 
-            MessageDigest md = MessageDigest.getInstance("MD5"); 
-  
-            // digest() method is called to calculate message digest 
-            //  of an input digest() return array of byte 
-            byte[] messageDigest = md.digest(input.getBytes()); 
-  
-            // Convert byte array into signum representation 
-            BigInteger no = new BigInteger(1, messageDigest); 
-  
-            // Convert message digest into hex value 
-            String hashtext = no.toString(16); 
-            while (hashtext.length() < 32) { 
-                hashtext = "0" + hashtext; 
-            } 
-            return hashtext; 
-        }  
-  
-        // For specifying wrong message digest algorithms 
-        catch (NoSuchAlgorithmException e) { 
-            throw new RuntimeException(e); 
-        } 
-    } 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -200,7 +178,8 @@ public class LoginPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField userName;
     // End of variables declaration//GEN-END:variables
 }

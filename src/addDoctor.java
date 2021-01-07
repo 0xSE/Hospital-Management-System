@@ -8,16 +8,25 @@
  *
  * @author xsame
  */
+
 import javax.swing.*;
+import java.math.BigInteger; 
+import java.security.MessageDigest; 
+import java.security.NoSuchAlgorithmException; 
+import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-public class addPatientF extends javax.swing.JFrame {
+
+public class addDoctor extends javax.swing.JFrame {
 
     /**
-     * Creates new form addPatientF
+     * Creates new form addDoctor
      */
-    public addPatientF() {
+    public addDoctor() {
         initComponents();
     }
 
@@ -30,6 +39,7 @@ public class addPatientF extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jTextField1 = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -41,9 +51,15 @@ public class addPatientF extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         genderValue = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        closeBottun = new javax.swing.JButton();
+        savebutton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        specializValue = new javax.swing.JTextField();
+        passValue = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
+
+        jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -53,14 +69,14 @@ public class addPatientF extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel5.setText("Gender");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(130, 180, 66, 30);
+        jLabel5.setBounds(120, 190, 100, 30);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setText("Address");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(130, 230, 71, 30);
+        jLabel7.setBounds(120, 240, 110, 30);
         jPanel1.add(nameValue);
-        nameValue.setBounds(270, 80, 150, 30);
+        nameValue.setBounds(270, 90, 190, 30);
 
         ageValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,21 +84,21 @@ public class addPatientF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(ageValue);
-        ageValue.setBounds(270, 130, 150, 30);
+        ageValue.setBounds(270, 290, 190, 30);
         jPanel1.add(addressValue);
-        addressValue.setBounds(270, 230, 150, 30);
+        addressValue.setBounds(270, 240, 190, 30);
         jPanel1.add(contactValue);
-        contactValue.setBounds(270, 280, 150, 30);
+        contactValue.setBounds(270, 340, 190, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setText("Name");
+        jLabel3.setText("User Name");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(140, 80, 53, 30);
+        jLabel3.setBounds(120, 90, 120, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("Contact No");
+        jLabel4.setText("Password");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(120, 280, 100, 30);
+        jLabel4.setBounds(120, 130, 140, 50);
 
         genderValue.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         genderValue.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Famale" }));
@@ -92,81 +108,116 @@ public class addPatientF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(genderValue);
-        genderValue.setBounds(270, 180, 150, 30);
+        genderValue.setBounds(270, 190, 190, 30);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel8.setText("Age");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(140, 130, 34, 30);
+        jLabel8.setBounds(120, 290, 70, 30);
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close.png"))); // NOI18N
-        jButton2.setText("Close");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        closeBottun.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        closeBottun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close.png"))); // NOI18N
+        closeBottun.setText("Close");
+        closeBottun.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                closeBottunActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
-        jButton2.setBounds(450, 380, 93, 40);
+        jPanel1.add(closeBottun);
+        closeBottun.setBounds(460, 440, 130, 40);
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save-icon--1.png"))); // NOI18N
-        jButton3.setText("Save");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        savebutton.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        savebutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/save-icon--1.png"))); // NOI18N
+        savebutton.setText("Save");
+        savebutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                savebuttonActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(140, 380, 89, 40);
+        jPanel1.add(savebutton);
+        savebutton.setBounds(60, 440, 140, 40);
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setText("Specialization");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(120, 380, 140, 50);
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel9.setText("Contact No");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(120, 340, 140, 30);
+
+        specializValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                specializValueActionPerformed(evt);
+            }
+        });
+        jPanel1.add(specializValue);
+        specializValue.setBounds(270, 390, 190, 30);
+
+        passValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                passValueActionPerformed(evt);
+            }
+        });
+        jPanel1.add(passValue);
+        passValue.setBounds(270, 140, 190, 30);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add new patient background.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 690, 470);
+        jLabel1.setBounds(0, 0, 620, 500);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(691, 465));
+        setSize(new java.awt.Dimension(621, 505));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ageValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ageValueActionPerformed
 
     private void genderValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_genderValueActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_genderValueActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-            this.setVisible(false);
+    private void closeBottunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeBottunActionPerformed
+        this.setVisible(false);
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_closeBottunActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         try { 
-        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
-            PreparedStatement stmt = con.prepareStatement("insert into patient( Name , age , gender, address ,contact ) values (?,?,?,?,?) ");
+    private void savebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebuttonActionPerformed
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
+            PreparedStatement stmt = con.prepareStatement("insert into Doctors( username , password , gender, address ,age , contact, Specialization ) values (?,?,?,?,?,?,?) ");
             String name = nameValue.getText();
-            int age = Integer.parseInt(ageValue.getText());
+            String password = passValue.getText();
             String gender= genderValue.getSelectedItem().toString();
             String address = addressValue.getText();
+            int age = Integer.parseInt(ageValue.getText());
             String contact = contactValue.getText();
+            String specialization = specializValue.getText();
             stmt.setString(1,name);
-            stmt.setInt(2,age);
+            stmt.setString(2,password);
             stmt.setString(3,gender);
             stmt.setString(4,address);
-            stmt.setString(5,contact);
+            stmt.setInt(5,age);
+            stmt.setString(6,contact);  
+            stmt.setString(7, specialization );
+            System.err.println("Err");
             stmt.executeUpdate();
-            stmt= con.prepareStatement("select *from patient");
+            stmt= con.prepareStatement("select *from Doctors");
             ResultSet set =  stmt.executeQuery();
             DefaultTableModel dm= new DefaultTableModel();
             String id="";
@@ -174,27 +225,29 @@ public class addPatientF extends javax.swing.JFrame {
                 id=set.getString(1);
             }
             nameValue.setText("");
+            passValue.setText("");
             ageValue.setText("");
             addressValue.setText("");
             contactValue.setText("");
-            stmt = con.prepareStatement("insert into patient_details( symptom , diagnosis , medicines ) values (?,?,?) ");
-            stmt.setString(1," ");
-            stmt.setString(2," ");
-            stmt.setString(3," ");
-            stmt.executeUpdate();            
+            specializValue.setText("");
+ 
             JOptionPane.showMessageDialog(this, "insertion successful" +"\n" +"ID: "+ id);
-         }
-         
+        }
+
         catch  (Exception e){
             JOptionPane.showMessageDialog(this, "insertion Faild");
             System.out.println("e.getMessege");
         }
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_savebuttonActionPerformed
 
-    private void ageValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ageValueActionPerformed
+    private void passValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passValueActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_ageValueActionPerformed
+    }//GEN-LAST:event_passValueActionPerformed
+
+    private void specializValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_specializValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_specializValueActionPerformed
 
     /**
      * @param args the command line arguments
@@ -213,20 +266,20 @@ public class addPatientF extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addPatientF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addDoctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addPatientF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addDoctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addPatientF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addDoctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addPatientF.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(addDoctor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new addPatientF().setVisible(true);
+                new addDoctor().setVisible(true);
             }
         });
     }
@@ -234,17 +287,22 @@ public class addPatientF extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField addressValue;
     private javax.swing.JTextField ageValue;
+    private javax.swing.JButton closeBottun;
     private javax.swing.JTextField contactValue;
     private javax.swing.JComboBox<String> genderValue;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField nameValue;
+    private javax.swing.JPasswordField passValue;
+    private javax.swing.JButton savebutton;
+    private javax.swing.JTextField specializValue;
     // End of variables declaration//GEN-END:variables
 }

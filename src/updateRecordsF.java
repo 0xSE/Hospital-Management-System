@@ -39,7 +39,6 @@ public class updateRecordsF extends javax.swing.JFrame {
         name = new javax.swing.JTextField();
         delete = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -60,14 +59,14 @@ public class updateRecordsF extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel3.setText("Name");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(110, 120, 60, 21);
+        jLabel3.setBounds(90, 120, 60, 21);
         jPanel1.add(contact_no);
         contact_no.setBounds(240, 300, 240, 30);
 
         jLabel4.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel4.setText("Contact No");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(100, 300, 109, 21);
+        jLabel4.setBounds(90, 300, 109, 21);
 
         search.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/search.png"))); // NOI18N
@@ -93,17 +92,17 @@ public class updateRecordsF extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel5.setText("Age");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(110, 180, 38, 21);
+        jLabel5.setBounds(90, 180, 38, 21);
 
         jLabel6.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel6.setText("Gender");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(100, 360, 100, 21);
+        jLabel6.setBounds(90, 360, 100, 21);
 
         jLabel8.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         jLabel8.setText("Address");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(100, 240, 81, 21);
+        jLabel8.setBounds(90, 240, 81, 21);
 
         close.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 18)); // NOI18N
         close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Close.png"))); // NOI18N
@@ -114,7 +113,7 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(close);
-        close.setBounds(270, 420, 140, 40);
+        close.setBounds(530, 420, 140, 40);
 
         gender.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 18)); // NOI18N
         gender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Famale" }));
@@ -136,15 +135,11 @@ public class updateRecordsF extends javax.swing.JFrame {
             }
         });
         jPanel1.add(delete);
-        delete.setBounds(500, 420, 140, 40);
+        delete.setBounds(250, 420, 140, 40);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/add new patient background.jpg"))); // NOI18N
         jPanel1.add(jLabel1);
         jLabel1.setBounds(0, 0, 680, 490);
-
-        jButton1.setText("jButton1");
-        jPanel1.add(jButton1);
-        jButton1.setBounds(560, 190, 79, 25);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -335,7 +330,6 @@ public class updateRecordsF extends javax.swing.JFrame {
     private javax.swing.JButton delete;
     private javax.swing.JComboBox<String> gender;
     private javax.swing.JTextField id;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
