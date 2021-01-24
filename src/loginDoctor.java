@@ -133,11 +133,13 @@ public class loginDoctor extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try { 
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
-            PreparedStatement stmt  =con.prepareStatement("select *from Doctors");
+            PreparedStatement stmt  =con.prepareStatement("select *from doctor");
             ResultSet set =  stmt.executeQuery();
             String id="";
+            MD5 md = new MD5();
+            String password= md.getMd5(Password.getText());
             while(set.next() && true){
-                if (set.getString(2).equals(userName.getText()) && set.getString(7).equals(Password.getText()) ){
+                if (set.getString(2).equals(userName.getText()) && set.getString(7).equals(password) ){
                     id=set.getString(1);
                     break;
                 }
@@ -169,6 +171,34 @@ public class loginDoctor extends javax.swing.JFrame {
                 new loginDoctor().setVisible(true);
             }
         });
+    }
+        public class MD5 { 
+    public String getMd5(String input) 
+    { 
+        try { 
+            // Static getInstance method is called with hashing MD5 
+            MessageDigest md = MessageDigest.getInstance("MD5"); 
+  
+            // digest() method is called to calculate message digest 
+            //  of an input digest() return array of byte 
+            byte[] messageDigest = md.digest(input.getBytes()); 
+  
+            // Convert byte array into signum representation 
+            BigInteger no = new BigInteger(1, messageDigest); 
+  
+            // Convert message digest into hex value 
+            String hashtext = no.toString(16); 
+            while (hashtext.length() < 32) { 
+                hashtext = "0" + hashtext; 
+            } 
+            return hashtext; 
+        }  
+  
+        // For specifying wrong message digest algorithms 
+        catch (NoSuchAlgorithmException e) { 
+            throw new RuntimeException(e); 
+        } 
+    } 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

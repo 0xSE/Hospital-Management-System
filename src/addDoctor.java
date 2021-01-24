@@ -12,7 +12,8 @@
 import javax.swing.*;
 import java.math.BigInteger; 
 import java.security.MessageDigest; 
-import java.security.NoSuchAlgorithmException; 
+import java.security.NoSuchAlgorithmException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -200,9 +201,13 @@ public class addDoctor extends javax.swing.JFrame {
     private void savebuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savebuttonActionPerformed
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
-            PreparedStatement stmt = con.prepareStatement("insert into Doctors( username , password , gender, address ,age , contact, Specialization ) values (?,?,?,?,?,?,?) ");
+            PreparedStatement stmt = con.prepareStatement("insert into doctor( username , password , gender, address ,age , contact, Specialization ) values (?,?,?,?,?,?,?) ");
             String name = nameValue.getText();
-            String password = passValue.getText();
+            
+            MD5 md = new MD5();
+            String password= md.getMd5(passValue.getText());
+            
+            
             String gender= genderValue.getSelectedItem().toString();
             String address = addressValue.getText();
             int age = Integer.parseInt(ageValue.getText());
@@ -215,9 +220,9 @@ public class addDoctor extends javax.swing.JFrame {
             stmt.setInt(5,age);
             stmt.setString(6,contact);  
             stmt.setString(7, specialization );
-            System.err.println("Err");
+            
             stmt.executeUpdate();
-            stmt= con.prepareStatement("select *from Doctors");
+            stmt= con.prepareStatement("select *from doctor");
             ResultSet set =  stmt.executeQuery();
             DefaultTableModel dm= new DefaultTableModel();
             String id="";
@@ -282,6 +287,34 @@ public class addDoctor extends javax.swing.JFrame {
                 new addDoctor().setVisible(true);
             }
         });
+    }
+    public class MD5 { 
+    public String getMd5(String input) 
+    { 
+        try { 
+            // Static getInstance method is called with hashing MD5 
+            MessageDigest md = MessageDigest.getInstance("MD5"); 
+  
+            // digest() method is called to calculate message digest 
+            //  of an input digest() return array of byte 
+            byte[] messageDigest = md.digest(input.getBytes()); 
+  
+            // Convert byte array into signum representation 
+            BigInteger no = new BigInteger(1, messageDigest); 
+  
+            // Convert message digest into hex value 
+            String hashtext = no.toString(16); 
+            while (hashtext.length() < 32) { 
+                hashtext = "0" + hashtext; 
+            } 
+            return hashtext; 
+        }  
+  
+        // For specifying wrong message digest algorithms 
+        catch (NoSuchAlgorithmException e) { 
+            throw new RuntimeException(e); 
+        } 
+    } 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

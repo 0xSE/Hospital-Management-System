@@ -110,7 +110,7 @@ public class showAllRecords extends javax.swing.JFrame {
     private void showALLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showALLActionPerformed
         try {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
-        PreparedStatement stmt= con.prepareStatement("select *from patient inner join patient_details where patient.id = patient_details.id_connector");
+        PreparedStatement stmt= con.prepareStatement("select *from patient inner join diagnosis where patient.id = diagnosis.id");
         ResultSet set =  stmt.executeQuery();
         DefaultTableModel dm= new DefaultTableModel();
         dm.addColumn("ID");
@@ -119,12 +119,13 @@ public class showAllRecords extends javax.swing.JFrame {
         dm.addColumn("Gender");
         dm.addColumn("Address");
         dm.addColumn("Contact No.");
+        dm.addColumn("Doctor");
         dm.addColumn("Symptom`s");
         dm.addColumn("Diagnosis");
         dm.addColumn("Medicines");
 
         while(set.next() && true){
-        String r[]={ set.getString(1), set.getString(2), set.getString(3), set.getString(4), set.getString(5), set.getString(6),set.getString(8),set.getString(9),set.getString(10)} ;
+        String r[]={ set.getString(1), set.getString(2), set.getString(3), set.getString(4), set.getString(5), set.getString(6),set.getString(8),set.getString(9),set.getString(10),set.getString(11)} ;
         dm.addRow(r);
         }
         showDataInTable.setModel(dm);
@@ -141,7 +142,7 @@ public class showAllRecords extends javax.swing.JFrame {
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
             Statement st = con.createStatement();
-            ResultSet rs =  st.executeQuery("select *from patient inner join patient_details where patient.id = patient_details.id_connector");
+            ResultSet rs =  st.executeQuery("select *from patient inner join diagnosis where patient.id = diagnosis.id");
             showDataInTable.setAutoResizeMode(showDataInTable.AUTO_RESIZE_OFF);
             showDataInTable.setModel(DbUtils.resultSetToTableModel(rs));
 

@@ -113,7 +113,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/doctor_admin_icon_3-512.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Update Your information"/>
+            <Property name="text" type="java.lang.String" value="Update my information"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>

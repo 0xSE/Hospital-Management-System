@@ -22,8 +22,15 @@ public class DiagonsisF extends javax.swing.JFrame {
     /**
      * Creates new form DiagonsisF
      */
+
+    public String id="1";
+
     public DiagonsisF() {
         initComponents();
+    }
+    public DiagonsisF(String Id) {
+        initComponents();
+        id=Id;
     }
 // 
     /** 
@@ -170,7 +177,6 @@ public class DiagonsisF extends javax.swing.JFrame {
     private void searshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searshActionPerformed
                 try {
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
- 
         PreparedStatement stmt= con.prepareStatement("select *from patient");
         ResultSet set =  stmt.executeQuery();
         DefaultTableModel dm= new DefaultTableModel();
@@ -215,23 +221,31 @@ public class DiagonsisF extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
             
         try {
-            int id= Integer.parseInt(idValue.getText());
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
-            PreparedStatement stmt=con.prepareStatement("update patient_details set symptom=? ,diagnosis=? , medicines=? where id_connector= ?");
-            
-            String symptom= symptomFiled.getText();
-            String diagnosis = diagnosisField.getText();
-            String medicines = medicinesField.getText();
-            stmt.setString(1,symptom);
-            stmt.setString(2,diagnosis);
-            stmt.setString(3,medicines);
-            stmt.setInt(4,id);
-;
-            stmt.executeUpdate();
-            JOptionPane.showMessageDialog(this, "insertion successful");
-            diagnosisField.setText("");
-            medicinesField.setText("");
-            symptomFiled.setText("");
+
+        int iD= Integer.parseInt(idValue.getText());
+        Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/HMS", "root", "root");
+        PreparedStatement stmt= con.prepareStatement("select *from doctor where id_doctor=?");
+
+        stmt.setString(1, id);
+        ResultSet set =  stmt.executeQuery();
+        set.next();
+        String nameDoctor= set.getString(2);
+
+        stmt=con.prepareStatement("update diagnosis set symptom=? ,diagnosis=? , medicines=?, doctor=? where id= ? ");
+
+        String symptom= symptomFiled.getText();
+        String diagnosis = diagnosisField.getText();
+        String medicines = medicinesField.getText();
+        stmt.setString(1,symptom);
+        stmt.setString(2,diagnosis);
+        stmt.setString(3,medicines);
+        stmt.setString(4,nameDoctor);
+        stmt.setInt(5,iD);
+        stmt.executeUpdate();
+        JOptionPane.showMessageDialog(this, "insertion successful");
+        diagnosisField.setText("");
+        medicinesField.setText("");
+        symptomFiled.setText("");
         } catch (SQLException ex) {
                 System.out.println("Error");
         }

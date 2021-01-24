@@ -25,7 +25,7 @@ public class UpdateDoctor extends javax.swing.JFrame {
     /**
      * Creates new form UpdateDoctor
      */
-    public String id="1";
+    public String id;
 
     public UpdateDoctor() {
         initComponents();
@@ -153,7 +153,7 @@ public class UpdateDoctor extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Show);
-        Show.setBounds(540, 30, 109, 30);
+        Show.setBounds(540, 30, 130, 30);
         jPanel1.add(age);
         age.setBounds(270, 82, 240, 30);
 
@@ -194,7 +194,7 @@ public class UpdateDoctor extends javax.swing.JFrame {
 
         try{
             Connection con= DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","root");
-            PreparedStatement stmt=con.prepareStatement("update Doctors set username=? ,age=? , address=? ,contact=?,Specialization=? where id_doctor=? ");
+            PreparedStatement stmt=con.prepareStatement("update doctor set username=? ,age=? , address=? ,contact=?,Specialization=? where id_doctor=? ");
            // String ID=id.getText();
             String Name=name.getText();
             String Address=address.getText();
@@ -228,7 +228,7 @@ public class Function {
     public ResultSet find (String s){
     try{
     con =DriverManager.getConnection("jdbc:mysql://localhost/HMS","root","root");
-    ps=con.prepareStatement("select *from doctors where id_doctor= ?");
+    ps=con.prepareStatement("select *from doctor where id_doctor= ?");
     ps.setString(1,id);
     rs=ps.executeQuery();
     

@@ -88,7 +88,7 @@ public class HomeDoctor extends javax.swing.JFrame {
         jButton7.setBounds(20, 510, 250, 59);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/doctor_admin_icon_3-512.png"))); // NOI18N
-        jButton4.setText("Update Your information");
+        jButton4.setText("Update my information");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
@@ -127,7 +127,7 @@ public class HomeDoctor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        DiagonsisF Dia= new DiagonsisF();
+        DiagonsisF Dia= new DiagonsisF(id);
         Dia.setVisible(true);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed

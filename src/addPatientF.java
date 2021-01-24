@@ -177,10 +177,11 @@ public class addPatientF extends javax.swing.JFrame {
             ageValue.setText("");
             addressValue.setText("");
             contactValue.setText("");
-            stmt = con.prepareStatement("insert into patient_details( symptom , diagnosis , medicines ) values (?,?,?) ");
+            stmt = con.prepareStatement("insert into diagnosis( symptom , diagnosis , medicines, doctor ) values (?,?,?,?) ");
             stmt.setString(1," ");
             stmt.setString(2," ");
             stmt.setString(3," ");
+            stmt.setString(4," ");
             stmt.executeUpdate();            
             JOptionPane.showMessageDialog(this, "insertion successful" +"\n" +"ID: "+ id);
          }
